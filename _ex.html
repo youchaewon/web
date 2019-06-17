@@ -1,0 +1,39 @@
+/ 이미지 클릭시 원본 크기로 팝업 보기
+
+<script>
+  function doImgPop(img){
+   img1= new Image();
+   img1.src=(img);
+   imgControll(img);
+  }
+
+  function imgControll(img){
+   if((img1.width!=0)&&(img1.height!=0)){
+      viewImage(img);
+    }
+    else{
+       controller="imgControll('"+img+"')";
+       intervalID=setTimeout(controller,20);
+    }
+  }
+
+  function viewImage(img){
+   W=img1.width;
+   H=img1.height;
+   O="width="+W+",height="+H+",scrollbars=yes";
+   imgWin=window.open("","",O);
+   imgWin.document.write("<html><head><title>이미지 상세보기</title></head>");
+   imgWin.document.write("<body topmargin=0 leftmargin=0>");
+   imgWin.document.write("<img src="+img+" onclick='self.close()' style='cursor:pointer;' title ='클릭하시면 창이 닫힙니다.'>");
+   imgWin.document.close();
+  }
+</script>
+
+
+
+<!-- 사용시 -->
+
+<img src="images/1.png" width="295px" height="295px" title="클릭하시면 원본크기로 보실 수 있습니다."
+     style="cursor: pointer;" onclick="doImgPop('images/1.png')" />
+
+<img src="images/2.jpg" width="295px" height="295px" onclick="javascript:location.href='file:///C:/Users/fhkal/Desktop/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80/1_home.html';">
